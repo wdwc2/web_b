@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web_b.web_b.mapper.VideoMapper">
+    <select id="selectVideo" resultType="com.web_b.web_b.pojo.Video">
+        select * from video
+    </select>
+    <!--    批量删除员工-->
+    <delete id="deleteVideoByNames">
+        delete from video where file_path in
+        <foreach collection="filePaths" item="filePath" open="(" close=")" separator=",">
+            #{filePath}
+        </foreach>
+    </delete>
+<!--    根据视频名编辑视频-->
+    <update id="editVideoByName">
+        update video
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="type != null and type != ''">
+                type = #{type},
+            </if>
+            <if test="difficulty != null and difficulty != ''">
+                difficulty = #{difficulty},
+            </if>
+            <if test="description != null and description != ''">
+                description = #{description},
+            </if>
+            <if test="privateOrPublic != null and privateOrPublic != ''">
+                private_or_public = #{privateOrPublic},
+            </if>
+        </set>
+        where file_path = #{filePath}
+    </update>
+</mapper>
