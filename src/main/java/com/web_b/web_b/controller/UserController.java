@@ -3,15 +3,11 @@ package com.web_b.web_b.controller;
 import com.web_b.web_b.pojo.Result;
 import com.web_b.web_b.pojo.User;
 import com.web_b.web_b.service.UserService;
-import com.web_b.web_b.util.JwtUtil;
-import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Map;
 import java.util.Objects;
 
 @RestController
@@ -61,7 +57,7 @@ public class UserController {
     @RequestMapping("/deleteUser")
     public Result deleteUser(String id){
         // 调用service，删除用户
-        userService.deleteUser(id);
+        userService.removeById(id);
         return new Result(200,"ok", null);
     }
     // 修改用户

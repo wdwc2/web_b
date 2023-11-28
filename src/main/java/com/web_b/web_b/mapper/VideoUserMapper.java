@@ -1,17 +1,18 @@
 package com.web_b.web_b.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.web_b.web_b.pojo.VideoUser;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Mapper
-public interface VideoUserMapper {
+public interface VideoUserMapper extends
+        BaseMapper<VideoUser> {
 
     // 添加评论
     @Insert("insert into video_user (user_id,file_path,score,comment,update_time) values (#{userId}, #{filePath}, #{score}, #{comment}, #{updateTime})")

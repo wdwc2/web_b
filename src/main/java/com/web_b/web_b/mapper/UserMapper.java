@@ -1,12 +1,13 @@
 package com.web_b.web_b.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.web_b.web_b.pojo.User;
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 @Mapper // 这是一个操作数据库的mapper
-public interface UserMapper {
+public interface UserMapper
+        extends BaseMapper<User> {
     // 根据用户名和密码查询用户
     @Select("select * from user where userName=#{userName} and passWord=#{passWord}")
     User findUserByNameAndPwd(User user);
@@ -18,10 +19,6 @@ public interface UserMapper {
     // 添加用户
     @Select("insert into user (userName, passWord, user_type,create_time) values (#{userName}, #{passWord}, #{userType}, #{createTime})")
     void addUser(User user);
-
-    // 删除用户
-    @Select("delete from user where id=#{id}")
-    void deleteUser(String id);
 
     // 根据用户名查询用户
     @Select("select * from user where userName=#{userName}")

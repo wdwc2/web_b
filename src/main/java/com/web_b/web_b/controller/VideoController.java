@@ -1,13 +1,11 @@
 package com.web_b.web_b.controller;
 
-import com.web_b.web_b.pojo.PageBean;
 import com.web_b.web_b.pojo.Result;
 import com.web_b.web_b.pojo.Video;
+import com.web_b.web_b.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import com.web_b.web_b.service.VideoService;
 
 import java.util.List;
 import java.util.Map;
@@ -67,20 +65,20 @@ public class VideoController {
     @GetMapping("/findAllVideo")
     public Result findAllVideo() {
         // 调用service，查询视频
-        List<Video> videos = videoService.findAllVideo();
+        List<Video> videos = videoService.list();
         return new Result(200, "ok", videos);
     }
 
     // 分页查询所有用户上传的视频
-    @GetMapping("/findAllVideoByPage")
-    public Result findAllVideoByPage(@RequestParam(defaultValue = "1") Integer page,
-                                     @RequestParam(defaultValue = "10") Integer limit) {
-//        System.out.println(page);
-//        System.out.println(limit);
-        // 调用service，查询视频
-        PageBean pageBeans = videoService.findAllVideoByPage(page, limit);
-        return new Result(200, "ok", pageBeans);
-    }
+//    @GetMapping("/findAllVideoByPage")
+//    public Result findAllVideoByPage(@RequestParam(defaultValue = "1") Integer page,
+//                                     @RequestParam(defaultValue = "10") Integer limit) {
+////        System.out.println(page);
+////        System.out.println(limit);
+//        // 调用service，查询视频
+//        PageBean pageBeans = videoService.findAllVideoByPage(page, limit);
+//        return new Result(200, "ok", pageBeans);
+//    }
 
     // 从所有视频中查询公开且审核为合格视频，按视频上传时间降序排列，模糊查询
     @GetMapping("/findAllPublicVideoByAudit")

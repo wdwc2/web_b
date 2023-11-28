@@ -1,5 +1,6 @@
 package com.web_b.web_b.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.web_b.web_b.mapper.UserMapper;
 import com.web_b.web_b.pojo.User;
 import com.web_b.web_b.service.UserService;
@@ -7,7 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper, User>
+        implements UserService {
 
     @Autowired // 注入mapper
     private UserMapper userMapper;
@@ -27,10 +29,6 @@ public class UserServiceImpl implements UserService {
         userMapper.addUser(user);
     }
 
-    @Override
-    public void deleteUser(String id) {
-        userMapper.deleteUser(id);
-    }
 
     @Override
     public User findUserByName(User user) {

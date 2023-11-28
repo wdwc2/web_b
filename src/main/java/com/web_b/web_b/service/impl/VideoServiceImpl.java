@@ -1,14 +1,12 @@
 package com.web_b.web_b.service.impl;
 
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.web_b.web_b.mapper.VideoMapper;
-import com.web_b.web_b.pojo.PageBean;
 import com.web_b.web_b.pojo.Video;
+import com.web_b.web_b.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import com.web_b.web_b.service.VideoService;
 
 import java.io.File;
 import java.time.LocalDateTime;
@@ -17,7 +15,9 @@ import java.util.Map;
 import java.util.UUID;
 
 @Service
-public class VideoServiceImpl implements VideoService {
+public class VideoServiceImpl
+        extends ServiceImpl<VideoMapper, Video>
+        implements VideoService {
 
     @Autowired // 注入mapper
     private VideoMapper videoMapper;
@@ -62,20 +62,14 @@ public class VideoServiceImpl implements VideoService {
     // 根据视频名删除视频
     @Override
     public void deleteVideoByName(String file_path) {
+        // 调用mapper，删除数据库中的视频信息
+        videoMapper.deleteVideoByName(file_path);
         // 删除磁盘中的视频
         File file = new File("D:\\javacode\\web-b\\src\\assets\\" + file_path);
         file.delete();
-        // System.out.println(flag);
-        // 调用mapper，删除数据库中的视频信息
-        videoMapper.deleteVideoByName(file_path);
     }
 
-    // 查询所有用户上传的视频
-    @Override
-    public List<Video> findAllVideo() {
-        // 调用mapper，查询视频
-        return videoMapper.findAllVideo();
-    }
+
 
 //    @Override
 //    public PageBean findAllVideoByPage(Integer page, Integer limit) {
@@ -91,21 +85,6 @@ public class VideoServiceImpl implements VideoService {
 //        return new PageBean(count, videos);
 //    }
 
-
-    @Override
-    public PageBean findAllVideoByPage(Integer page, Integer limit) {
-        // 设置分页参数
-        PageHelper.startPage(page, limit);
-
-        // 执行查询
-        List<Video> videos = videoMapper.findAllVideo();
-
-        // 取出分页结果,强转为Page类型,Page中封装了分页相关的所有信息
-        Page<Video> pages = (Page<Video>) videos;
-
-        // 封装PageBean
-        return new PageBean(pages.getTotal(), pages.getResult());
-    }
 
     @Override
     public void deleteVideoByNames(List<String> filePaths) {

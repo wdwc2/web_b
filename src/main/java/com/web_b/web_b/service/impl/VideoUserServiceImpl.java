@@ -1,5 +1,6 @@
 package com.web_b.web_b.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.web_b.web_b.mapper.VideoUserMapper;
 import com.web_b.web_b.pojo.VideoUser;
 import com.web_b.web_b.service.VideoUserService;
@@ -10,7 +11,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class VideoUserServiceImpl implements VideoUserService {
+public class VideoUserServiceImpl
+        extends ServiceImpl<VideoUserMapper, VideoUser>
+        implements VideoUserService {
 
     @Autowired // 注入mapper
     private VideoUserMapper videoUserMapper;

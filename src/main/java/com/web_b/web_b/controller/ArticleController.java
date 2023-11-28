@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 
@@ -19,8 +21,8 @@ public class ArticleController {
     // 查询全部公告
     @RequestMapping("/getAllArticle")
     public Result getAllArticle(){
-        // 调用service，查询全部公告
-        Article[] articles = articleService.findAllArticle();
+        // 查询全部公告
+        List<Article> articles = articleService.list();
         return new Result(200,"ok", articles);
     }
 
@@ -36,7 +38,7 @@ public class ArticleController {
     @RequestMapping("/deleteArticle")
     public Result deleteArticle(Article article){
         // 调用service，删除公告
-        articleService.deleteArticle(article);
+        articleService.removeById(article.getId());
         return new Result(200,"ok", null);
     }
 

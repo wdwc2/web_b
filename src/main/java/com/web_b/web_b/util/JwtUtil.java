@@ -2,9 +2,7 @@ package com.web_b.web_b.util;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.Date;
 import java.util.Map;
@@ -30,7 +28,6 @@ public class JwtUtil {
                 .setClaims(claims) // 设置载荷
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRE)) // 设置过期时间
                 .signWith(signatureAlgorithm, signingKey).compact(); // 设置签名,并生成令牌
-
     }
 
     // 解析jwt令牌

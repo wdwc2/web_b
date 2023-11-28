@@ -1,10 +1,11 @@
 package com.web_b.web_b.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.web_b.web_b.pojo.User;
 import org.springframework.stereotype.Service;
 
 @Service
-public interface UserService {
+public interface UserService extends IService<User> {
 
     // 根据用户名和密码查询用户
     User findUserByNameAndPwd(User user);
@@ -14,8 +15,6 @@ public interface UserService {
 
     // 添加用户
     void addUser(User user);
-
-    void deleteUser(String id);
 
     User findUserByName(User user);
 

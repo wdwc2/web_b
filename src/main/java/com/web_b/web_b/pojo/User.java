@@ -1,5 +1,6 @@
 package com.web_b.web_b.pojo;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,6 +11,7 @@ import java.util.Map;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@TableName("user")
 public class User {
     private Integer id;
     private String userName;

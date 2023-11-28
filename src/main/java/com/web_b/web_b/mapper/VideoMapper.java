@@ -1,15 +1,15 @@
 package com.web_b.web_b.mapper;
 
-import com.web_b.web_b.pojo.PageBean;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.web_b.web_b.pojo.Video;
 import org.apache.ibatis.annotations.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Map;
 
 @Mapper // 这是一个操作数据库的mapper
-public interface VideoMapper {
+public interface VideoMapper
+        extends BaseMapper<Video> {
 
     // 插入视频
     @Insert("insert into video (name, type, difficulty, description, upload_time, private_or_public, file_path, username) values (#{name}, #{type}, #{difficulty}, #{description}, #{uploadTime}, #{privateOrPublic}, #{filePath}, #{userName})")
@@ -26,9 +26,6 @@ public interface VideoMapper {
     @Delete("delete from video where file_path=#{filePath}")
     void deleteVideoByName(String filePath);
 
-    // 查询所有用户上传的视频
-    @Select("select * from video")
-    List<Video> findAllVideo();
 
     // 分页查询所有用户上传的视频
     @Select("select * from video limit #{start}, #{end}")

@@ -1,6 +1,7 @@
 package com.web_b.web_b.pojo;
 
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,8 +11,10 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@TableName("video")
 public class Video {
-    private String filePath;// 文件路径,主键
+
+    private String filePath;// 文件路径
     private String name;// 视频名
     private String type;// 视频类型
     private String difficulty;// 难度

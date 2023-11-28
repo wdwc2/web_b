@@ -6,7 +6,7 @@
     <select id="selectVideo" resultType="com.web_b.web_b.pojo.Video">
         select * from video
     </select>
-    <!--    批量删除员工-->
+    <!--    批量删除视频-->
     <delete id="deleteVideoByNames">
         delete from video where file_path in
         <foreach collection="filePaths" item="filePath" open="(" close=")" separator=",">
