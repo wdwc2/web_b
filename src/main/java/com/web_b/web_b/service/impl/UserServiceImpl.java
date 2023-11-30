@@ -7,6 +7,8 @@ import com.web_b.web_b.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         implements UserService {
@@ -20,13 +22,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     }
     // 查询全部普通用户
     @Override
-    public User[] findAllUser() {
+    public List<User> findAllUser() {
         return userMapper.findAllUser();
     }
     // 添加用户
     @Override
-    public void addUser(User user) {
+    public User addUser(User user) {
         userMapper.addUser(user);
+        return userMapper.findUserByName(user);
     }
 
 
@@ -40,4 +43,5 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         userMapper.updateUser(user);
         return userMapper.findUserByName(user);
     }
+
 }

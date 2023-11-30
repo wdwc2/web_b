@@ -12,11 +12,11 @@ public interface VideoMapper
         extends BaseMapper<Video> {
 
     // 插入视频
-    @Insert("insert into video (name, type, difficulty, description, upload_time, private_or_public, file_path, username) values (#{name}, #{type}, #{difficulty}, #{description}, #{uploadTime}, #{privateOrPublic}, #{filePath}, #{userName})")
+    @Insert("insert into video (name, type, difficulty, description, upload_time, private_or_public, file_path, user_name) values (#{name}, #{type}, #{difficulty}, #{description}, #{uploadTime}, #{privateOrPublic}, #{filePath}, #{userName})")
     void uploadVideo(Video video);
 
     // 根据上传者查询视频
-    @Select("select * from video where username=#{userName}")
+    @Select("select * from video where user_name=#{userName}")
     Video[] findVideoByUserName(String userName);
 
     // 根据视频名编辑视频
@@ -47,12 +47,12 @@ public interface VideoMapper
 
 
     // 查询所有公开视频,并按照上传时间降序排列,并且审核通过,模糊查询
-    @Select("select * from video where auditing='合格' and private_or_public='public' and (name like concat('%',#{keyWord},'%') or type like concat('%',#{keyWord},'%') or difficulty like concat('%',#{keyWord},'%') or description like concat('%',#{keyWord},'%') or username like concat('%',#{keyWord},'%'))")
+    @Select("select * from video where auditing='合格' and private_or_public='public' and (name like concat('%',#{keyWord},'%') or type like concat('%',#{keyWord},'%') or difficulty like concat('%',#{keyWord},'%') or description like concat('%',#{keyWord},'%') or user_name like concat('%',#{keyWord},'%'))")
     List<Video> findAllPublicVideoByAudit(String keyWord);
 
 
     // 查询所有用户的视频数量,并按照数量降序排列
-    @Select("SELECT username, COUNT(*) AS video_num FROM video where auditing = '合格' GROUP BY username ORDER BY video_num DESC")
+    @Select("SELECT user_name, COUNT(*) AS video_num FROM video where auditing = '合格' GROUP BY user_name ORDER BY video_num DESC")
     List<Map<String, Integer>> getVideoCount();
 
     // 根据视频类型查询视频

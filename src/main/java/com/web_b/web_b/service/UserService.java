@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.web_b.web_b.pojo.User;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public interface UserService extends IService<User> {
 
@@ -11,10 +13,10 @@ public interface UserService extends IService<User> {
     User findUserByNameAndPwd(User user);
 
     // 查询全部普通用户
-    User[] findAllUser();
+    List<User> findAllUser();
 
     // 添加用户
-    void addUser(User user);
+    User addUser(User user);
 
     User findUserByName(User user);
 

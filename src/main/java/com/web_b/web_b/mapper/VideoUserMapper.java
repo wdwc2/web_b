@@ -15,7 +15,7 @@ public interface VideoUserMapper extends
         BaseMapper<VideoUser> {
 
     // 添加评论
-    @Insert("insert into video_user (user_id,file_path,score,comment,update_time) values (#{userId}, #{filePath}, #{score}, #{comment}, #{updateTime})")
+    @Insert("insert into video_user(user_id, file_path, score, comment, update_time) values(#{userId}, #{filePath}, #{score}, #{comment}, #{updateTime})")
     void addComment(VideoUser videoUser);
 
     // 根据视频路径查询评论,并按时间排序,联合user表查询用户名

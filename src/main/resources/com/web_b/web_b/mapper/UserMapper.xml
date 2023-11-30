@@ -12,7 +12,7 @@
                 password = #{passWord},
             </if>
             <if test="userName != null and userName != ''">
-                username = #{userName},
+                user_name = #{userName},
             </if>
             <if test="score != null and score != 0 ">
                 score = #{score},
